@@ -1,4 +1,6 @@
-## Create the required tables
+# Library Management Database – SQL Schema & Queries
+
+## 1.Create the required tables
 CREATE TABLE Authors (
 id SERIAL PRIMARY KEY,
 name varchar(100),
@@ -23,7 +25,7 @@ email varchar(100),
 borrowed_books INT[]
 );
 
-## Insert at least 10 sample books.
+## 2.Insert at least 10 sample books.
 INSERT INTO books (id, title, author_id, genres, published_year, available) VALUES
 (1, '1984', 1, ARRAY['Dystopian', 'Political Fiction'], 1949, TRUE),
 (2, 'To Kill a Mockingbird', 2, ARRAY['Southern Gothic', 'Bildungsroman'], 1960, TRUE),
@@ -36,7 +38,7 @@ INSERT INTO books (id, title, author_id, genres, published_year, available) VALU
 (9, 'Crime and Punishment', 9, ARRAY['Philosophical Novel'], 1866, TRUE),
 (10, 'The Hobbit', 10, ARRAY['Fantasy'], 1937, TRUE);
 
-## Insert at least 10 sample authors.
+## 3.Insert at least 10 sample authors.
 INSERT INTO authors (id, name, nationality, birth_year, death_year) VALUES
 (1, 'George Orwell', 'British', 1903, 1950),
 (2, 'Harper Lee', 'American', 1926, 2016),
@@ -49,7 +51,7 @@ INSERT INTO authors (id, name, nationality, birth_year, death_year) VALUES
 (9, 'Fyodor Dostoevsky', 'Russian', 1821, 1881),
 (10, 'J.R.R. Tolkien', 'British', 1892, 1973);
 
-## Insert at least 10 sample patrons.
+## 4.Insert at least 10 sample patrons.
 INSERT INTO patrons (id, name, email, borrowed_books) VALUES
 (1, 'Alice Johnson', 'alice@example.com', ARRAY[]::INT[]),
 (2, 'Bob Smith', 'bob@example.com', ARRAY[1, 2]),
@@ -62,51 +64,51 @@ INSERT INTO patrons (id, name, email, borrowed_books) VALUES
 (9, 'Ivy Taylor', 'ivy@example.com', ARRAY[]::INT[]),
 (10, 'Jack Anderson', 'jack@example.com', ARRAY[7, 8]);
 
-## Get all books.
+## 5.Get all books.
 SELECT * FROM Books;
 
-## Get a book by title.
+## 6.Get a book by title.
 SELECT * 
 FROM Books
 WHERE title = 'The Great Gatsby';
 
-## Get all books by a specific author.
+## 7.Get all books by a specific author.
 SELECT b.title,b.published_year,b.available,a.name,a.nationality 
 FROM Books as b
 JOIN Authors as a
 ON b.author_id = a.id
 WHERE a.name = 'Harper Lee';
 
-## Get all available books.
+## 8.Get all available books.
 SELECT * 
 FROM Books
 WHERE available ='true';
 
-## Mark a book as borrowed (set available = false).
+## 9.Mark a book as borrowed (set available = false).
 UPDATE Books
 SET available = false
 WHERE title = 'The Hobbit';
 
-## Add a new genre to an existing book.
+## 10.Add a new genre to an existing book.
 UPDATE Books
 SET genres = array_append(genres, 'Horror')
 WHERE title = '1984';
 
-## Add a borrowed book to a patron’s record.
+## 11.Add a borrowed book to a patron’s record.
 -- UPDATE Patrons
 -- SET borrowed_books = array_append(borrowed_books,10)
 -- WHERE name = 'Alice Johnson';
 
-## Delete a book by title.
+## 12.Delete a book by title.
 DELETE 
 FROM Books
 WHERE title = 'Brave New World';
 
-## Delete an author by ID.
+## 13.Delete an author by ID.
 DELETE FROM books WHERE author_id = 7;
 DELETE FROM authors WHERE id = 7;
 
-## Find books published after 1950.
+## 14.Find books published after 1950.
 SELECT * 
 FROM Books
 WHERE published_year > 1950 AND available = true;
@@ -133,4 +135,4 @@ WHERE name LIKE '%George%';
 ## Increment the published year 1869 by 1.
 UPDATE Books
 SET published_year = published_year + 1
-WHERE published_year = 1925;
+WHERE published_year = 1925; 
