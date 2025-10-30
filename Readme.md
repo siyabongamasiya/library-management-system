@@ -95,9 +95,9 @@ SET genres = array_append(genres, 'Horror')
 WHERE title = '1984';
 
 ## 11.Add a borrowed book to a patron’s record.
--- UPDATE Patrons
--- SET borrowed_books = array_append(borrowed_books,10)
--- WHERE name = 'Alice Johnson';
+UPDATE Patrons
+SET borrowed_books = array_append(borrowed_books,10)
+WHERE name = 'Alice Johnson';
 
 ## 12.Delete a book by title.
 DELETE 
