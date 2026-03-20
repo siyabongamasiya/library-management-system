@@ -199,7 +199,7 @@ Sprint 7 includes documenting all SQL commands in this README and instructions f
 
 ### Running in pgAdmin
 
-1. Create/open your database (e.g. `LibraryDB`).
+1. Create/open your database (e.g. `library-management-system`).
 2. Open **Query Tool**.
 3. Run the table creation SQL first (Authors, then Books, then Patrons).
 4. Run the INSERT statements.
@@ -207,13 +207,7 @@ Sprint 7 includes documenting all SQL commands in this README and instructions f
 
 ### Running in psql
 
-1. Connect to PostgreSQL:
-
-```bash
-psql -U <username> -d LibraryDB
-```
-
-2. Paste and run the SQL blocks in this order:
+1. Paste and run the SQL blocks in this order:
 
 - Create tables
 - Insert sample data
