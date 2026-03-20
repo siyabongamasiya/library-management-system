@@ -204,11 +204,3 @@ Sprint 7 includes documenting all SQL commands in this README and instructions f
 3. Run the table creation SQL first (Authors, then Books, then Patrons).
 4. Run the INSERT statements.
 5. Run the queries/updates/deletes as needed.
-
-### Running in psql
-
-1. Paste and run the SQL blocks in this order:
-
-- Create tables
-- Insert sample data
-- Run queries/updates/deletes
