@@ -1,6 +1,6 @@
 # Library Management Database – SQL Schema & Queries
 
-## 1.Create the required tables
+## 1. Create the required tables
 
 ```sql
 CREATE TABLE Authors (
@@ -28,7 +28,7 @@ borrowed_books INT[]
 );
 ```
 
-## 2.Insert at least 10 sample books.
+## 2. Insert at least 10 sample books.
 
 ```sql
 INSERT INTO books (id, title, author_id, genres, published_year, available) VALUES
@@ -44,7 +44,7 @@ INSERT INTO books (id, title, author_id, genres, published_year, available) VALU
 (10, 'The Hobbit', 10, ARRAY['Fantasy'], 1937, TRUE);
 ```
 
-## 3.Insert at least 10 sample authors.
+## 3. Insert at least 10 sample authors.
 
 ```sql
 INSERT INTO authors (id, name, nationality, birth_year, death_year) VALUES
@@ -60,7 +60,7 @@ INSERT INTO authors (id, name, nationality, birth_year, death_year) VALUES
 (10, 'J.R.R. Tolkien', 'British', 1892, 1973);
 ```
 
-## 4.Insert at least 10 sample patrons.
+## 4. Insert at least 10 sample patrons.
 
 ```sql
 INSERT INTO patrons (id, name, email, borrowed_books) VALUES
@@ -76,13 +76,13 @@ INSERT INTO patrons (id, name, email, borrowed_books) VALUES
 (10, 'Jack Anderson', 'jack@example.com', ARRAY[7, 8]);
 ```
 
-## 5.Get all books.
+## 5. Get all books.
 
 ```sql
 SELECT * FROM Books;
 ```
 
-## 6.Get a book by title.
+## 6. Get a book by title.
 
 ```sql
 SELECT *
@@ -90,7 +90,7 @@ FROM Books
 WHERE title = 'The Great Gatsby';
 ```
 
-## 7.Get all books by a specific author.
+## 7. Get all books by a specific author.
 
 ```sql
 SELECT b.title,b.published_year,b.available,a.name,a.nationality
@@ -100,7 +100,7 @@ ON b.author_id = a.id
 WHERE a.name = 'Harper Lee';
 ```
 
-## 8.Get all available books.
+## 8. Get all available books.
 
 ```sql
 SELECT *
@@ -108,7 +108,7 @@ FROM Books
 WHERE available ='true';
 ```
 
-## 9.Mark a book as borrowed (set available = false).
+## 9. Mark a book as borrowed (set available = false).
 
 ```sql
 UPDATE Books
@@ -116,7 +116,7 @@ SET available = false
 WHERE title = 'The Hobbit';
 ```
 
-## 10.Add a new genre to an existing book.
+## 10. Add a new genre to an existing book.
 
 ```sql
 UPDATE Books
@@ -124,7 +124,7 @@ SET genres = array_append(genres, 'Horror')
 WHERE title = '1984';
 ```
 
-## 11.Add a borrowed book to a patron’s record.
+## 11. Add a borrowed book to a patron’s record.
 
 ```sql
 UPDATE Patrons
@@ -132,7 +132,7 @@ SET borrowed_books = array_append(borrowed_books,10)
 WHERE name = 'Alice Johnson';
 ```
 
-## 12.Delete a book by title.
+## 12. Delete a book by title.
 
 ```sql
 DELETE
@@ -140,13 +140,13 @@ FROM Books
 WHERE title = 'Brave New World';
 ```
 
-## 13.Delete an author by ID.
+## 13. Delete an author by ID.
 
 ```sql
 DELETE FROM authors WHERE id = 7;
 ```
 
-## 14.Find books published after 1950.
+## 14. Find books published after 1950.
 
 ```sql
 SELECT *
@@ -154,7 +154,7 @@ FROM Books
 WHERE published_year > 1950;
 ```
 
-## Find all American authors.
+## 15. Find all American authors.
 
 ```sql
 SELECT *
@@ -162,14 +162,14 @@ FROM Authors
 WHERE nationality = 'American';
 ```
 
-## Set all books as available.
+## 16. Set all books as available.
 
 ```sql
 UPDATE Books
 SET available = true;
 ```
 
-## Find all books that are available AND published after 1950.
+## 17. Find all books that are available AND published after 1950.
 
 ```sql
 SELECT *
@@ -177,15 +177,15 @@ FROM Books
 WHERE published_year > 1950 AND available = true;
 ```
 
-## Find authors whose names contain "George".
+## 18. Find authors whose names contain "George".
 
 ```sql
 SELECT *
 FROM Authors
-WHERE name LIKE '%George%';
+WHERE name ILIKE '%George%';
 ```
 
-## Increment the published year 1869 by 1.
+## 19. Increment the published year 1869 by 1.
 
 ```sql
 UPDATE Books
@@ -204,3 +204,17 @@ Sprint 7 includes documenting all SQL commands in this README and instructions f
 3. Run the table creation SQL first (Authors, then Books, then Patrons).
 4. Run the INSERT statements.
 5. Run the queries/updates/deletes as needed.
+
+### Running in psql
+
+1. Connect to PostgreSQL:
+
+```bash
+psql -U <username> -d library-management-system
+```
+
+2. Paste and run the SQL blocks in this order:
+
+- Create tables
+- Insert sample data
+- Run queries/updates/deletes
